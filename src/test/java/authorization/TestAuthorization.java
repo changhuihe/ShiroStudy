@@ -51,6 +51,5 @@ public class TestAuthorization {
 		System.out.println(subject.isPermitted("user:create"));// true
 		System.out.println(subject.isPermitted("user:view"));// false
 		System.out.println(subject.isPermittedAll("user:create", "user:update"));// true
-
 	}
 }
