@@ -2,12 +2,14 @@ package userDefinedAuthorization;
 
 import org.apache.shiro.authz.Permission;
 
-/*
- * 自定义权限字符串解析
- * 权限字符串：+资源字符串+权限位+实例ID;以+开头中间通过+分割；
- * 权限：0表示所有权限，1新增，2修改，4删除、8查看
+import com.alibaba.druid.util.StringUtils;
+
+/**
+ * 规则 +资源字符串+权限位+实例ID 以+开头 中间通过+分割 权限： 0 表示所有权限 1 新增 0001 2 修改 0010 4 删除 0100 8
+ * 查看 1000 如 +user+10 表示对资源user拥有修改/查看权限 不考虑一些异常情况
  */
 public class BitPermission implements Permission {
+
 	private String resourceIdentify;
 	private int permissionBit;
 	private String instanceId;
@@ -17,7 +19,7 @@ public class BitPermission implements Permission {
 		if (array.length > 1) {
 			resourceIdentify = array[1];
 		}
-		if (!"".equals(resourceIdentify) && resourceIdentify != null) {
+		if (StringUtils.isEmpty(resourceIdentify)) {
 			resourceIdentify = "*";
 		}
 		if (array.length > 2) {
@@ -26,7 +28,7 @@ public class BitPermission implements Permission {
 		if (array.length > 3) {
 			instanceId = array[3];
 		}
-		if (!"".equals(instanceId) && instanceId != null) {
+		if (StringUtils.isEmpty(instanceId)) {
 			instanceId = "*";
 		}
 	}
@@ -46,5 +48,11 @@ public class BitPermission implements Permission {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "BitPermission{" + "resourceIdentify='" + resourceIdentify + '\'' + ", permissionBit=" + permissionBit
+				+ ", instanceId='" + instanceId + '\'' + '}';
 	}
 }

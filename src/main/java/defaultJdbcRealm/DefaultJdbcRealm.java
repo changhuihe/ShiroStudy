@@ -19,7 +19,7 @@ public class DefaultJdbcRealm {
 		SecurityManager securityManager = factory.getInstance();
 		SecurityUtils.setSecurityManager(securityManager);
 		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken("ch", "123");
+		UsernamePasswordToken token = new UsernamePasswordToken("hch", "123");
 		try {
 			subject.login(token);
 			System.out.println("验证成功");
