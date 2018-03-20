@@ -9,11 +9,11 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
-public class TestPermission {
+public class PermissionTest {
 
 	@Test
 	public void test() {
-		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro_permission.ini");
+		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:permission_shiro.ini");
 		SecurityManager securityManager = factory.getInstance();
 		SecurityUtils.setSecurityManager(securityManager);
 		Subject subject = SecurityUtils.getSubject();

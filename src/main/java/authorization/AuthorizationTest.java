@@ -10,13 +10,13 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
-public class TestAuthorization {
+public class AuthorizationTest {
 	/*
 	 * 基于角色的访问控制
 	 */
 	// @Test
 	public void testRole() {
-		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro_authorization_role.ini");
+		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:authorization_role_shiro.ini");
 		SecurityManager securityManager = factory.getInstance();
 		SecurityUtils.setSecurityManager(securityManager);
 		Subject subject = SecurityUtils.getSubject();
@@ -42,7 +42,7 @@ public class TestAuthorization {
 	@Test
 	public void testPermission() {
 		Factory<SecurityManager> factory = new IniSecurityManagerFactory(
-				"classpath:shiro_authorization_permission.ini");
+				"classpath:authorization_permission_shiro.ini");
 		SecurityManager securityManager = factory.getInstance();
 		SecurityUtils.setSecurityManager(securityManager);
 		Subject subject = SecurityUtils.getSubject();

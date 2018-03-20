@@ -1,4 +1,4 @@
-package realmStudy;
+package userDefinedRealm;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -10,9 +10,9 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.realm.Realm;
 
 /*
- * 多Realm配置
+ * 单Realm配置，集成Realm接口，实现其三个方法
  */
-public class SingleRealm2 implements Realm {
+public class UserDefinedRealm1 implements Realm {
 
 	/*
 	 * 根据Token获认证信息
@@ -20,7 +20,7 @@ public class SingleRealm2 implements Realm {
 	public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String username = (String) token.getPrincipal();// 得到用户名
 		String password = new String((char[]) token.getCredentials());// 得到密码
-		if (!"zxh".equals(username)) {
+		if (!"hch".equals(username)) {
 			System.out.println("用户名错误");
 			throw new UnknownAccountException();// 用户名错误
 		}
@@ -37,7 +37,7 @@ public class SingleRealm2 implements Realm {
 	 * 返回一个唯一的Realm名字
 	 */
 	public String getName() {
-		return "singleRealm2";
+		return "singleRealm";
 	}
 
 	/*

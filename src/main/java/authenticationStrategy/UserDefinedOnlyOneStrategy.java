@@ -1,4 +1,4 @@
-package authenticatorStrategy;
+package authenticationStrategy;
 
 import java.util.Collection;
 
@@ -12,7 +12,7 @@ import org.apache.shiro.realm.Realm;
 /*
  * 自定义AuthenticationStrategy实现
  */
-public class OnlyOneStrategy extends AbstractAuthenticationStrategy {
+public class UserDefinedOnlyOneStrategy extends AbstractAuthenticationStrategy {
 
 	// 在所有Realm验证之前调用
 	@Override
