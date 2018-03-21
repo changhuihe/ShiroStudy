@@ -22,6 +22,9 @@ public class FirstSuccessfulStrategyTest {
 	 * Realm 验证成功才算成功，且返回所有 Realm 身份验证成功的认证信息，如果有一个失败就失败了。 ModularRealmAuthenticator
 	 * 默认使用 AtLeastOneSuccessfulStrategy策略。
 	 */
+	/*
+	 * 1、FirstSuccessfulStrategy：只要有一个 Realm 验证成功即可，只返回第一个 Realm 身份验证成功的认证信息，其他的忽略
+	 */
 	@Test
 	public void testFirstSuccessfulStrategy() {
 		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:firstSuccessfulStrategy_shiro.ini");

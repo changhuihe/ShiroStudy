@@ -57,5 +57,4 @@ public class UserDefinedOnlyOneStrategy extends AbstractAuthenticationStrategy {
 			throws AuthenticationException {
 		return aggregate;
 	}
-
 }

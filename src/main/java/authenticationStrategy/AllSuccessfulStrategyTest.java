@@ -10,6 +10,9 @@ import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
 public class AllSuccessfulStrategyTest {
+	/*
+	 * 3、AllSuccessfulStrategy：所有 Realm 验证成功才算成功，且返回所有 Realm 身份验证成功的认证信息，如果有一个失败就失败了
+	 */
 	@Test
 	public void testAllSuccessfulStrategy() {
 		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:allSuccessfulStrategy_shiro.ini");

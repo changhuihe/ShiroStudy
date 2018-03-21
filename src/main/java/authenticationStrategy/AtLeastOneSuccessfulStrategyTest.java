@@ -11,6 +11,10 @@ import org.junit.Test;
 
 public class AtLeastOneSuccessfulStrategyTest {
 
+	/*
+	 * 2、AtLeastOneSuccessfulStrategy：只要有一个 Realm 验证成功即可，和 FirstSuccessfulStrategy
+	 * 不同，返回所有 Realm 身份验证成功的认证信息
+	 */
 	@Test
 	public void testAtLeastOneSuccessfulStrategy() {
 		Factory<SecurityManager> factory = new IniSecurityManagerFactory(

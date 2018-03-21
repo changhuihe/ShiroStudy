@@ -15,6 +15,9 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
+/*
+ * 第一个身份认证测试
+ */
 public class FirstAuthenticationTest {
 	@Test
 	public void testHch() {

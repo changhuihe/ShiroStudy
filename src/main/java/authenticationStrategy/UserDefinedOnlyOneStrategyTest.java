@@ -9,10 +9,14 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
+/*
+ * 自定义认证策略测试
+ */
 public class UserDefinedOnlyOneStrategyTest {
 	@Test
 	public void testOnlyOneStrategy() {
-		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:userDefinedOnlyOneStrategy_shiro.ini");
+		Factory<SecurityManager> factory = new IniSecurityManagerFactory(
+				"classpath:userDefinedOnlyOneStrategy_shiro.ini");
 		SecurityManager securityManager = factory.getInstance();
 		SecurityUtils.setSecurityManager(securityManager);
 		Subject subject = SecurityUtils.getSubject();

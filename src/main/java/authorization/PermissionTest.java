@@ -9,6 +9,9 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
+/*
+ * 资源许可测试
+ */
 public class PermissionTest {
 
 	@Test

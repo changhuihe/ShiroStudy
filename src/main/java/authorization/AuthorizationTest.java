@@ -10,6 +10,9 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
+/*
+ * 授权测试
+ */
 public class AuthorizationTest {
 	/*
 	 * 基于角色的访问控制
