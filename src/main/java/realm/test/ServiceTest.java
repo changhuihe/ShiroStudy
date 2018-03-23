@@ -12,12 +12,12 @@ import realm.service.UserServiceImpl;
 public class ServiceTest {
 	@Test
 	public void test() {
-		Permission permission = new Permission("user:create", "新增", true);
+		Permission permission = new Permission("user:create", "新增", false);
 		PermissionServiceImpl permissionService = new PermissionServiceImpl();
 		permission = permissionService.createPermission(permission);
 		System.out.println(permission);
 
-		Role role = new Role("admin", "管理员", true);
+		Role role = new Role("admin", "管理员", false);
 		RoleServiceImpl roleService = new RoleServiceImpl();
 		role = roleService.createRole(role);
 		System.out.println(role);
