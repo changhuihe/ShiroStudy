@@ -86,6 +86,8 @@ public abstract class BaseTest {
 		userService.createUser(u4);
 		// 5、关联用户-角色
 		userService.correlationRoles(u1.getId(), r1.getId());
+		userService.correlationRoles(u2.getId(), r2.getId());
+
 	}
 
 	@After
@@ -111,16 +113,12 @@ public abstract class BaseTest {
 		} catch (UnknownAccountException e) {
 			System.out.println("此用户不存在!");
 		} catch (ExpiredCredentialsException e) {
-			System.out.println("过期的凭证!");
+			System.out.println("密码过期!");
 		} catch (IncorrectCredentialsException e) {
-			System.out.println("错误的凭证!");
+			System.out.println("密码错误!");
 		} catch (AuthenticationException e) {
 			System.out.println("登录异常");
 		}
-	}
-
-	public Subject subject() {
-		return SecurityUtils.getSubject();
 	}
 
 }

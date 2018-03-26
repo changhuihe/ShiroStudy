@@ -20,10 +20,12 @@ public class UserRealm extends AuthorizingRealm {
 
 	private UserService userService = new UserServiceImpl();
 
+	/*
+	 * 获取授权信息
+	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		String username = (String) principals.getPrimaryPrincipal();
-
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		authorizationInfo.setRoles(userService.findRoles(username));
 		authorizationInfo.setStringPermissions(userService.findPermissions(username));
@@ -44,7 +46,7 @@ public class UserRealm extends AuthorizingRealm {
 		if (Boolean.TRUE.equals(user.getLocked())) {
 			throw new LockedAccountException(); // 帐号锁定
 		}
-		//构造函数接受账户的用户名、密码、用于散列凭证的salt、realm名称
+		// 构造函数接受账户的用户名、密码、用于散列凭证的salt、realm名称
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUsername(), // 用户名
 				user.getPassword(), // 密码
 				ByteSource.Util.bytes(user.getCredentialsSalt()), // salt=username+salt
