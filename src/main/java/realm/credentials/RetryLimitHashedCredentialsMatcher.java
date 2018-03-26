@@ -10,6 +10,9 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/*
+ * 密码重试次数限制
+ */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
 	private Ehcache passwordRetryCache;
 

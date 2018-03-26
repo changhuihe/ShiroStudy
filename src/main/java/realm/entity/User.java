@@ -20,6 +20,12 @@ public class User implements Serializable {
 	public User() {
 	}
 
+	public User(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 	public Long getId() {
 		return id;
 	}

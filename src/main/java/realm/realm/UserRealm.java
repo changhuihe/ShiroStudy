@@ -44,7 +44,7 @@ public class UserRealm extends AuthorizingRealm {
 		if (Boolean.TRUE.equals(user.getLocked())) {
 			throw new LockedAccountException(); // 帐号锁定
 		}
-		// 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
+		//构造函数接受账户的用户名、密码、用于散列凭证的salt、realm名称
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUsername(), // 用户名
 				user.getPassword(), // 密码
 				ByteSource.Util.bytes(user.getCredentialsSalt()), // salt=username+salt

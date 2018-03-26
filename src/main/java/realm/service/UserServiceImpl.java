@@ -5,6 +5,7 @@ import java.util.Set;
 import realm.dao.UserDao;
 import realm.dao.UserDaoImpl;
 import realm.entity.User;
+import realm.utils.PasswordHelper;
 
 /*
  * 用户服务层实现类

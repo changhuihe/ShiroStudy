@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 import realm.entity.Role;
+import realm.utils.JdbcTemplateUtils;
 
 /*
  * 角色dao层是实现类

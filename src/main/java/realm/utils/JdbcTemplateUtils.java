@@ -1,4 +1,4 @@
-package realm.dao;
+package realm.utils;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 

@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 import realm.entity.Permission;
+import realm.utils.JdbcTemplateUtils;
 
 /*
  * 权限dao层实现类

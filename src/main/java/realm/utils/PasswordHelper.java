@@ -1,4 +1,4 @@
-package realm.service;
+package realm.utils;
 
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
@@ -7,6 +7,9 @@ import org.apache.shiro.util.ByteSource;
 
 import realm.entity.User;
 
+/*
+ * ÓÃÓÚ¼ÓÃÜÃÜÂë
+ */
 public class PasswordHelper {
 	private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
 

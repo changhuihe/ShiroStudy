@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 import realm.entity.User;
+import realm.utils.JdbcTemplateUtils;
 
 public class UserDaoImpl implements UserDao {
 	private JdbcTemplate jdbcTemplate = JdbcTemplateUtils.jdbcTemplate();
