@@ -88,6 +88,13 @@ public abstract class BaseTest {
 		userService.correlationRoles(u1.getId(), r1.getId());
 		userService.correlationRoles(u2.getId(), r2.getId());
 
+		// 1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
+		Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:realm_shiro.ini");
+
+		// 2、得到SecurityManager实例 并绑定给SecurityUtils
+		org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+		SecurityUtils.setSecurityManager(securityManager);
+
 	}
 
 	@After
@@ -119,6 +126,19 @@ public abstract class BaseTest {
 		} catch (AuthenticationException e) {
 			System.out.println("登录异常");
 		}
+	}
+
+	protected void login(String username, String password) {
+
+		// 3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）
+		Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+
+		subject.login(token);
+	}
+
+	public Subject subject() {
+		return SecurityUtils.getSubject();
 	}
 
 }

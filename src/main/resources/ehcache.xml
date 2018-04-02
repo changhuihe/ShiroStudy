@@ -3,16 +3,13 @@
 
     <diskStore path="java.io.tmpdir"/>
 
-
-
-    <!-- 登录记录缓存 锁定10分钟 -->
-    <cache name="passwordRetryCache"
-           maxEntriesLocalHeap="2000"
-           eternal="false"
-           timeToIdleSeconds="3600"
-           timeToLiveSeconds="0"
+    <cache name="shiro-activeSessionCache"
+           maxEntriesLocalHeap="10000"
            overflowToDisk="false"
-           statistics="true">
-    </cache>
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           statistics="true"/>
 
 </ehcache>

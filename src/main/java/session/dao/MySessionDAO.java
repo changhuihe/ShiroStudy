@@ -11,6 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import session.utils.JdbcTemplateUtils;
 import session.utils.SerializableUtils;
 
+/*
+ * 自定义实现SessionDAO，继承CachingSessionDAO即可
+ */
 public class MySessionDAO extends CachingSessionDAO {
 
 	private JdbcTemplate jdbcTemplate = JdbcTemplateUtils.jdbcTemplate();
@@ -47,5 +50,4 @@ public class MySessionDAO extends CachingSessionDAO {
 			return null;
 		return SerializableUtils.deserialize(sessionStrList.get(0));
 	}
-
 }
