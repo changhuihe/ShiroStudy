@@ -57,11 +57,13 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Override
 	public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+		// 清除指定帐户的AuthorizationInfo缓存条目
 		super.clearCachedAuthorizationInfo(principals);
 	}
 
 	@Override
 	public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+		// 清除指定帐户的AuthenticationInfo缓存条目
 		super.clearCachedAuthenticationInfo(principals);
 	}
 

@@ -89,7 +89,8 @@ public abstract class BaseTest {
 		userService.correlationRoles(u2.getId(), r2.getId());
 
 		// 1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
-		Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:realm_shiro.ini");
+		Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory(
+				"classpath:realm_shiro.ini");
 
 		// 2、得到SecurityManager实例 并绑定给SecurityUtils
 		org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
@@ -129,12 +130,28 @@ public abstract class BaseTest {
 	}
 
 	protected void login(String username, String password) {
-
 		// 3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-
-		subject.login(token);
+		try {
+			subject.login(token);
+			System.out.println("身份验证成功");
+		} catch (ConcurrentAccessException e) {
+			System.out.println("此用户正在登录!");
+		} catch (LockedAccountException e) {
+			System.out.println("此用户已锁定!");
+		} catch (ExcessiveAttemptsException e) {
+			System.out.println("登录失败次数过多!");
+		} catch (UnknownAccountException e) {
+			System.out.println("此用户不存在!");
+		} catch (ExpiredCredentialsException e) {
+			System.out.println("密码过期!");
+		} catch (IncorrectCredentialsException e) {
+			System.out.println("密码错误!");
+		} catch (AuthenticationException e) {
+			System.out.println("登录异常");
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public Subject subject() {
