@@ -1,7 +1,6 @@
 package realm.service;
 
 import realm.dao.PermissionDao;
-import realm.dao.PermissionDaoImpl;
 import realm.entity.Permission;
 
 /*
@@ -9,7 +8,7 @@ import realm.entity.Permission;
  */
 public class PermissionServiceImpl implements PermissionService {
 
-	private PermissionDao permissionDao = new PermissionDaoImpl();
+	private PermissionDao permissionDao;
 
 	/*
 	 * 新增权限

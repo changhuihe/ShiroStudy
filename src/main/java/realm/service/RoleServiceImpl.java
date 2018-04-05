@@ -1,14 +1,13 @@
 package realm.service;
 
 import realm.dao.RoleDao;
-import realm.dao.RoleDaoImpl;
 import realm.entity.Role;
 
 /*
  * 角色服务层实现类
  */
 public class RoleServiceImpl implements RoleService {
-	private RoleDao roleDao = new RoleDaoImpl();
+	private RoleDao roleDao;
 
 	// 新增
 	public Role createRole(Role role) {

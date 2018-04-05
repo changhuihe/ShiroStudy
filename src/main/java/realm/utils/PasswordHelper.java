@@ -14,7 +14,19 @@ public class PasswordHelper {
 	private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
 
 	private String algorithmName = "md5";
-	private final int hashIterations = 2;
+	private int hashIterations = 2;
+
+	public void setRandomNumberGenerator(RandomNumberGenerator randomNumberGenerator) {
+		this.randomNumberGenerator = randomNumberGenerator;
+	}
+
+	public void setAlgorithmName(String algorithmName) {
+		this.algorithmName = algorithmName;
+	}
+
+	public void setHashIterations(int hashIterations) {
+		this.hashIterations = hashIterations;
+	}
 
 	public void encryptPassword(User user) {
 

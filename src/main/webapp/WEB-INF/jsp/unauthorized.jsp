@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>没有权限</title>
+    <style>.error{color:red;}</style>
 </head>
 <body>
-${subject.principal}没有授权。
+
+<div class="error">您没有权限[${exception.message}]</div>
 </body>
 </html>

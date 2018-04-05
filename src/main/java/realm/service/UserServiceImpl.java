@@ -3,7 +3,6 @@ package realm.service;
 import java.util.Set;
 
 import realm.dao.UserDao;
-import realm.dao.UserDaoImpl;
 import realm.entity.User;
 import realm.utils.PasswordHelper;
 
@@ -12,8 +11,8 @@ import realm.utils.PasswordHelper;
  */
 public class UserServiceImpl implements UserService {
 
-	private UserDao userDao = new UserDaoImpl();
-	private PasswordHelper passwordHelper = new PasswordHelper();
+	private UserDao userDao;
+	private PasswordHelper passwordHelper;
 
 	/*
 	 * 创建用户

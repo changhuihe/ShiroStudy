@@ -13,45 +13,51 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- shiro 1.1 及之前配置方式 -->
-	<!-- <filter> <filter-name>iniShiroFilter</filter-name> <filter-class>org.apache.shiro.web.servlet.IniShiroFilter</filter-class> 
-		<init-param> <param-name>configPath</param-name> 默认先从/WEB-INF/web_shiro.ini加载，如果没有默认就加载classpath:web_shiro.ini,即默认相对于web应用的上下文根路径 
-		<param-value>classpath:web_shiro.ini</param-value> </init-param> 可以直接内嵌ini配置文件内容 
-		<init-param> <param-name>config</param-name> <param-value>ini配置文件内容直接贴在这</param-value> 
-		</init-param> </filter> <filter-mapping> <filter-name>iniShiroFilter</filter-name> 
-		<url-pattern>/*</url-pattern> </filter-mapping> -->
-
-	<!-- shiro 1.2及以后配置方式 -->
-	<!-- 1.2开始引入Environment/WebEnvironment的概念，即由它们的实现提供相应的SecurityManager及其相应的依赖， 
-		ShiroFilter会自动找到Environment然后获取相应的依赖 -->
-	<!-- 通过EnvironmentLoaderListener来创建相应的WebEnvironment,并自动绑定到ServiceContext，默认使用IniWebEnvironment实现 -->
+	<!-- Spring配置文件开始 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+            classpath:spring-beans.xml,
+            classpath:spring-shiro-web.xml
+        </param-value>
+	</context-param>
+	<!-- 通过ContextLoadListener加载contextConfigLoaction指定的Spring配置文件 -->
 	<listener>
-		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- Spring配置文件结束 -->
 
-	<context-param>
-		<param-name>shiroEnvironmentClass</param-name>
-		<param-value>org.apache.shiro.web.env.IniWebEnvironment</param-value>
-		<!-- 默认先从/WEB-INF/web_shiro.ini加载，如果没有默认就加载classpath:web_shiro.ini,即默认相对于web应用的上下文根路径 -->
-	</context-param>
-
-	<context-param>
-		<param-name>shiroConfigLocations</param-name>
-		<param-value>classpath:session_shiro.ini</param-value>
-	</context-param>
-
+	<!-- shiro 安全过滤器 -->
+	<!-- filter-name等于spring-shiro-web.xml中的配置的shiro过过滤器 -->
+	<!-- DelegatingFilterProxy会自动到Spring容器中查找名字为 shiroFilter 的 bean 并把 filter 请求交给它处理 -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>
-		<filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<async-supported>true</async-supported>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
 	</filter>
+
 	<filter-mapping>
 		<filter-name>shiroFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- 如果是在获取会话时验证了会话已过期，将抛出 InvalidSessionException；因此需要捕获这个异常并跳转到相应的页面告诉用户会话已过期，让其重新登录 -->
-	<error-page>
-		<exception-type>org.apache.shiro.session.InvalidSessionException</exception-type>
-		<location>/invalidSession.jsp</location>
-	</error-page>
+
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 
 </web-app>
