@@ -129,7 +129,7 @@
 		class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
 		<!-- 指定登录表单提交用户名参数名 -->
 		<property name="usernameParam" value="username" />
-		<!-- 指定登录表单提交密码参数IGN -->
+		<!-- 指定登录表单提交密码参数名 -->
 		<property name="passwordParam" value="password" />
 		<!-- 指定当身份验证时的登录表单 -->
 		<property name="loginUrl" value="/login.jsp" />
